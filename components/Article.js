@@ -86,8 +86,61 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Puppy Ipsum',
+    date: 'Feb 10th, 2021',
+    firstParagraph: `Puppy kitty ipsum dolor sit good dog foot stick canary. Teeth Mittens grooming vaccine walk swimming nest good boy furry tongue heel furry treats fish. Cage run fast kitten dinnertime ball run foot park fleas throw house train licks stick dinnertime window. Yawn litter fish yawn toy pet gate throw Buddy kitty wag tail ball groom crate ferret heel wet nose Rover toys pet supplies.`,
+
+    secondParagraph: `Pet Food pet supplies gimme five puppy cage food feathers food heel feathers running pet gate walk lazy dog Spike. Good Boy park lazy dog walk kibble Scooby snacks licks canary. Maine Coon Cat walk catch water dog slobber chew scratcher ID tag litter tuxedo dog house lazy cat park. `,
+
+    thirdParagraph: `Dinnertime fetch throw feathers fleas tongue lazy cat lick throw kitten parrot hamster wag tail aquarium chew heel good boy lick feathers cockatiel. Wet Nose food ferret vaccine finch vaccination Scooby snacks string wagging barky tail head good boy pet gate meow good boy. Commands shake bird biscuit left paw finch bark ferret bark gimme five turtle fur canary. Water puppy dog lick kisses pet supplies slobber cat bird seed. Food sit biscuit groom tongue cage.`
   }
 ];
+
+function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagraph}){
+  const article = document.createElement('div');
+  const myTitle = document.createElement('h2');
+  const myDate = document.createElement('p');
+  const myFirstParagraph = document.createElement('p');
+  const mySecondParagraph = document.createElement('p');
+  const myThirdParagraph = document.createElement('p');
+  const myButton = document.createElement('span');
+
+  article.appendChild(myTitle);
+  article.appendChild(myDate);
+  article.appendChild(myFirstParagraph);
+  article.appendChild(mySecondParagraph);
+  article.appendChild(myThirdParagraph);
+  article.appendChild(myButton);
+
+  article.classList.add('article');
+  myDate.classList.add('date');
+  myButton.classList.add('expandButton');
+
+  myTitle.textContent = title;
+  myDate.textContent = date;
+  myFirstParagraph.textContent = firstParagraph;
+  mySecondParagraph.textContent = secondParagraph;
+  myThirdParagraph.textContent = thirdParagraph;
+  myButton.textContent = '+';
+
+  myButton.addEventListener('click', event => {
+    event.stopPropagation();
+    article.classList.toggle('article-open');
+  });
+
+  return article;
+}
+
+// console.log(articleMaker(data));
+// console.log(articleMaker({title: 'title', date: 'date', firstParagraph: 'firstParagraph', secondParagraph: 'secondParagraph', thirdParagraph: 'thirdParagraph'}));
+
+const articles = document.querySelector('.articles');
+
+data.forEach(articleObj => {
+  articles.appendChild(articleMaker(articleObj));
+});
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
