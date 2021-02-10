@@ -139,7 +139,7 @@ function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagr
 const articles = document.querySelector('.articles');
 
 data.forEach(articleObj => {
-  console.log(articles.appendChild(articleMaker(articleObj)));
+  articles.appendChild(articleMaker(articleObj));
 });
 
 /*
